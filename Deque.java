@@ -89,7 +89,7 @@ public class Deque<Item> implements Iterable<Item> {
     {
         if (isEmpty()) throw new java.util.NoSuchElementException();
         Item item = first.item;
-        first = first.next;
+        if (first.next != null) first = first.next;
         first.previous = null;
         if (isEmpty()) last = null;
         size--;
@@ -100,7 +100,7 @@ public class Deque<Item> implements Iterable<Item> {
     {
         if (isEmpty()) throw new java.util.NoSuchElementException();
         Item item = last.item;
-        last = last.previous;
+        if (last.previous != null) last = last.previous;
         last.next = null;
         if (isEmpty()) first = null;
         size--;
@@ -148,6 +148,18 @@ public class Deque<Item> implements Iterable<Item> {
    
     public static void main(String[] args)   // unit testing
     {
-        
+        Deque<String> deck = new Deque<>();
+        deck.addFirst("Hey");
+        deck.addLast("How");
+        deck.addFirst("Are");
+        deck.addLast("You");
+        System.out.println(deck.removeLast());
+        System.out.println(deck.size());
+        System.out.println(deck.removeLast());
+        System.out.println(deck.size());
+        System.out.println(deck.removeLast());
+        System.out.println(deck.size());
+        System.out.println(deck.removeLast());
+        System.out.println(deck.size());
     }
 }
