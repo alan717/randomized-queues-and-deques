@@ -66,9 +66,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     private class Node<Item> {
         Item item;
         Node<Item> next;
+        Node<Item> previous;
         private Node(Item item) {
             this.item = item;
             next = null;
+            previous = null;
         }
     }
     public static void main(String[] args)   // unit testing
