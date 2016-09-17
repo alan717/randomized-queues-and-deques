@@ -102,7 +102,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
     
     private class RandomizedQueueIterator implements Iterator<Item> {
-        private Node<Item> current = first;
+        Node<Item> current = first;
+        Random c = new Random();
+        int subsize = size;
         
         @Override
         public boolean hasNext() { return current != null; }
@@ -114,8 +116,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         
         public Item next() {
             if (!hasNext()) throw new java.util.NoSuchElementException();
+            for (int i = 0; i < c.nextInt(subsize); i++) current = current.next;
             Item item = current.item;
-            current = current.next;
+            if (current.next != null) current.next.previous = current.next;
+            if (current.previous != null)
+                current.previous.next = current.previous;
+            subsize--;
             return item;
         }
     }
