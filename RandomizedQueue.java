@@ -1,4 +1,5 @@
 
+import java.util.Iterator;
 import java.util.Random;
 
 /*
@@ -96,7 +97,26 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
    
     public Iterator<Item> iterator()         // return an independent iterator over items in random order
     {
-       
+       return new RandomizedQueueIterator();
+    }
+    
+    private class RandomizedQueueIterator implements Iterator<Item> {
+        private Node<Item> current = first;
+        
+        @Override
+        public boolean hasNext() { return current != null; }
+        
+        @Override
+        public void remove() { 
+            throw new java.lang.UnsupportedOperationException();
+        }
+        
+        public Item next() {
+            if (!hasNext()) throw new java.util.NoSuchElementException();
+            Item item = current.item;
+            current = current.next;
+            return item;
+        }
     }
     
     /**
