@@ -1,3 +1,6 @@
+
+import java.util.Iterator;
+
 /*
  * Copyright (C) 2016 Michael <GrubenM@GMail.com>
  *
@@ -76,7 +79,25 @@ public class Deque<Item> implements Iterable<Item> {
     
     public Iterator<Item> iterator()         // return an iterator over items in order from front to end
     {
+        return new DequeIterator();
+    }
+    
+    private class DequeIterator implements Iterator<Item> {
+        private Node current = first;
         
+        @Override
+        public boolean hasNext() { return current != null; }
+        
+        @Override
+        public void remove() { 
+            throw new java.lang.UnsupportedOperationException();
+        }
+        
+        public Item next() {
+            Item item = current.item;
+            current = current.next;
+            return item;
+        }
     }
     
     /**
