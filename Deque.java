@@ -39,8 +39,8 @@ import java.util.Iterator;
  * 
  */
 public class Deque<Item> implements Iterable<Item> {
-    private Node first;
-    private Node last;
+    private Node<Item> first;
+    private Node<Item> last;
     
     public Deque()                           // construct an empty deque
     {
@@ -65,6 +65,10 @@ public class Deque<Item> implements Iterable<Item> {
     public void addLast(Item item)           // add the item to the end
     {
         if (item == null) throw new java.lang.NullPointerException();
+        Node<Item> oldlast = last;
+        last = new Node<>(item);
+        if (isEmpty()) first = last;
+        else oldlast.next = last;
     }
     
     public Item removeFirst()                // remove and return the item from the front
@@ -83,7 +87,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
     
     private class DequeIterator implements Iterator<Item> {
-        private Node current = first;
+        private Node<Item> current = first;
         
         @Override
         public boolean hasNext() { return current != null; }
@@ -94,7 +98,7 @@ public class Deque<Item> implements Iterable<Item> {
         }
         
         public Item next() {
-            if (current == null) throw new java.util.NoSuchElementException();
+            if (!hasNext()) throw new java.util.NoSuchElementException();
             Item item = current.item;
             current = current.next;
             return item;
@@ -105,14 +109,17 @@ public class Deque<Item> implements Iterable<Item> {
      * The Node is the class from which a linked list is built.
      * The deque here relies on a linked list implementation.
      */
-    private class Node {
+    private class Node<Item> {
         Item item;
-        Node next;
+        Node<Item> next;
         private Node(Item item) {
             this.item = item;
             next = null;
         }
     }
    
-   public static void main(String[] args)   // unit testing
+    public static void main(String[] args)   // unit testing
+    {
+        
+    }
 }
