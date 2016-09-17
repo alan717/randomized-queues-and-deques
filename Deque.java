@@ -108,6 +108,10 @@ public class Deque<Item> implements Iterable<Item> {
     private class Node {
         Item item;
         Node next;
+        private Node(Item item) {
+            this.item = item;
+            next = null;
+        }
     }
    
    public static void main(String[] args)   // unit testing
