@@ -1,5 +1,6 @@
 
 import edu.princeton.cs.algs4.StdIn;
+import java.util.Random;
 
 /*
  * Copyright (C) 2016 Michael <GrubenM@GMail.com>
@@ -28,7 +29,13 @@ import edu.princeton.cs.algs4.StdIn;
  */
 public class Subset {
     public static void main(String[] args) {
+        Deque<String> deck = new Deque<>();
         int k = Integer.parseInt(args[0]);
-        String s = StdIn.readAll();
+        while (!StdIn.isEmpty()) deck.addLast(StdIn.readString());
+        Random r = new Random();
+        System.out.println(r.nextInt(8));
+        System.out.println(r.nextInt(8));
+        System.out.println(r.nextInt(8));
+        System.out.println(r.nextInt(8));
     }
 }
