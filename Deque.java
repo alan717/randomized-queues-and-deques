@@ -36,6 +36,9 @@
  * 
  */
 public class Deque<Item> implements Iterable<Item> {
+    private Node first;
+    private Node last;
+    
     public Deque()                           // construct an empty deque
     {
         
