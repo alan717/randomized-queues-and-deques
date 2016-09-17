@@ -20,6 +20,8 @@
  * @author Michael <GrubenM@GMail.com>
  */
 public class RandomizedQueue<Item> implements Iterable<Item> {
+    private Node<Item> first;
+    private Node<Item> last;
     int size = 0;
     
     public RandomizedQueue()                 // construct an empty randomized queue
@@ -56,7 +58,19 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     {
        
     }
-   
+    
+    /**
+     * The Node is the class from which a linked list is built.
+     * The deque here relies on a linked list implementation.
+     */
+    private class Node<Item> {
+        Item item;
+        Node<Item> next;
+        private Node(Item item) {
+            this.item = item;
+            next = null;
+        }
+    }
     public static void main(String[] args)   // unit testing
     {
        
