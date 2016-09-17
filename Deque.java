@@ -56,12 +56,12 @@ public class Deque<Item> implements Iterable<Item> {
     
     public void addFirst(Item item)          // add the item to the front
     {
-
+        if (item == null) throw new java.lang.NullPointerException();
     }
     
     public void addLast(Item item)           // add the item to the end
     {
-
+        if (item == null) throw new java.lang.NullPointerException();
     }
     
     public Item removeFirst()                // remove and return the item from the front
