@@ -46,7 +46,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     
     public RandomizedQueue()                 // construct an empty randomized queue
     {
-       
+       first = null;
+       last = null;
     }
    
     public boolean isEmpty()                 // is the queue empty?
