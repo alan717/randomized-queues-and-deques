@@ -60,6 +60,10 @@ public class Deque<Item> implements Iterable<Item> {
     public void addFirst(Item item)          // add the item to the front
     {
         if (item == null) throw new java.lang.NullPointerException();
+        Node<Item> oldfirst = first;
+        first = new Node<>(item);
+        if (isEmpty()) last = first;
+        else first.next = oldfirst;
     }
     
     public void addLast(Item item)           // add the item to the end
