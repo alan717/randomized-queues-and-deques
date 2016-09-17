@@ -1,3 +1,6 @@
+
+import java.util.Random;
+
 /*
  * Copyright (C) 2016 Michael <GrubenM@GMail.com>
  *
@@ -43,21 +46,23 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     private Node<Item> first;
     private Node<Item> last;
     int size = 0;
+    Random r;
     
     public RandomizedQueue()                 // construct an empty randomized queue
     {
-       first = null;
-       last = null;
+        first = null;
+        last = null;
+        r = new Random();
     }
    
     public boolean isEmpty()                 // is the queue empty?
     {
-       return (size <= 0);
+        return (size <= 0);
     }
    
     public int size()                        // return the number of items on the queue
     {
-       return size;
+        return size;
     }
     
     public void enqueue(Item item)           // add the item
@@ -75,7 +80,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
    
     public Item dequeue()                    // remove and return a random item
     {
-       
+        Node<Item> n = first;
+        for (int i = 0; i < r.nextInt(size); i++) n = n.next;
+        n.previous.next = n.next;
+        n.next.previous = n.previous;
+        return n.item;
     }
    
     public Item sample()                     // return (but do not remove) a random item
