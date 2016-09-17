@@ -41,7 +41,15 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     
     public void enqueue(Item item)           // add the item
     {
-       
+        if (item == null) throw new java.lang.NullPointerException();
+        Node<Item> oldlast = last;
+        last = new Node<>(item);
+        if (isEmpty()) first = last;
+        else {
+            oldlast.next = last;
+            last.previous = oldlast;
+        }
+        size++;
     }
    
     public Item dequeue()                    // remove and return a random item
