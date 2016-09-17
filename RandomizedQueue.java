@@ -20,6 +20,8 @@
  * @author Michael <GrubenM@GMail.com>
  */
 public class RandomizedQueue<Item> implements Iterable<Item> {
+    int size = 0;
+    
     public RandomizedQueue()                 // construct an empty randomized queue
     {
        
@@ -32,7 +34,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
    
     public int size()                        // return the number of items on the queue
     {
-       
+       return size;
     }
     
     public void enqueue(Item item)           // add the item
