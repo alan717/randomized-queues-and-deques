@@ -41,7 +41,6 @@ import java.util.Iterator;
 public class Deque<Item> implements Iterable<Item> {
     private Node first;
     private Node last;
-    private int size = 0;
     
     public Deque()                           // construct an empty deque
     {
