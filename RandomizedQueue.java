@@ -61,7 +61,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     
     /**
      * The Node is the class from which a linked list is built.
-     * The deque here relies on a linked list implementation.
+     * The RandomizedQueue here relies on a linked list implementation.
      */
     private class Node<Item> {
         Item item;
