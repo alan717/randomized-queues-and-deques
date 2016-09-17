@@ -50,7 +50,7 @@ public class Deque<Item> implements Iterable<Item> {
    
     public boolean isEmpty()                 // is the deque empty?
     {
-        
+        return (first == null || last == null);
     }
     
     public int size()                        // return the number of items on the deque
