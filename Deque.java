@@ -51,7 +51,7 @@ public class Deque<Item> implements Iterable<Item> {
    
     public boolean isEmpty()                 // is the deque empty?
     {
-        return (first == null || last == null);
+        return (size <= 0);
     }
     
     public int size()                        // return the number of items on the deque
@@ -91,8 +91,8 @@ public class Deque<Item> implements Iterable<Item> {
         Item item = first.item;
         if (first.next != null) first = first.next;
         first.previous = null;
-        if (isEmpty()) last = null;
         size--;
+        if (isEmpty()) last = null;
         return item;
     }
     
@@ -102,8 +102,8 @@ public class Deque<Item> implements Iterable<Item> {
         Item item = last.item;
         if (last.previous != null) last = last.previous;
         last.next = null;
-        if (isEmpty()) first = null;
         size--;
+        if (isEmpty()) first = null;
         return item;
     }
     
@@ -153,6 +153,8 @@ public class Deque<Item> implements Iterable<Item> {
         deck.addLast("How");
         deck.addFirst("Are");
         deck.addLast("You");
+        System.out.println(deck.removeLast());
+        System.out.println(deck.size());
         System.out.println(deck.removeLast());
         System.out.println(deck.size());
         System.out.println(deck.removeLast());
