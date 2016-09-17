@@ -45,7 +45,8 @@ public class Deque<Item> implements Iterable<Item> {
     
     public Deque()                           // construct an empty deque
     {
-        
+        first = null;
+        last = null;
     }
    
     public boolean isEmpty()                 // is the deque empty?
