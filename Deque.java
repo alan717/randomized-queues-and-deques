@@ -41,6 +41,7 @@ import java.util.Iterator;
 public class Deque<Item> implements Iterable<Item> {
     private Node<Item> first;
     private Node<Item> last;
+    private int size = 0;
     
     public Deque()                           // construct an empty deque
     {
@@ -54,7 +55,7 @@ public class Deque<Item> implements Iterable<Item> {
     
     public int size()                        // return the number of items on the deque
     {
-        
+        return size;
     }
     
     public void addFirst(Item item)          // add the item to the front
@@ -64,6 +65,7 @@ public class Deque<Item> implements Iterable<Item> {
         first = new Node<>(item);
         if (isEmpty()) last = first;
         else first.next = oldfirst;
+        size++;
     }
     
     public void addLast(Item item)           // add the item to the end
@@ -73,16 +75,19 @@ public class Deque<Item> implements Iterable<Item> {
         last = new Node<>(item);
         if (isEmpty()) first = last;
         else oldlast.next = last;
+        size++;
     }
     
     public Item removeFirst()                // remove and return the item from the front
     {
         if (isEmpty()) throw new java.util.NoSuchElementException();
+        size--;
     }
     
     public Item removeLast()                 // remove and return the item from the end
     {
         if (isEmpty()) throw new java.util.NoSuchElementException();
+        size--;
     }
     
     public Iterator<Item> iterator()         // return an iterator over items in order from front to end
