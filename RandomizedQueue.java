@@ -82,8 +82,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     {
         Node<Item> n = first;
         for (int i = 0; i < r.nextInt(size); i++) n = n.next;
-        n.previous.next = n.next;
-        n.next.previous = n.previous;
+        if (n.previous != null) n.previous.next = n.next;
+        if (n.next != null) n.next.previous = n.previous;
         return n.item;
     }
    
