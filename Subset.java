@@ -29,13 +29,8 @@ import java.util.Random;
  */
 public class Subset {
     public static void main(String[] args) {
-        Deque<String> deck = new Deque<>();
+        RandomizedQueue<String> rq = new RandomizedQueue<>();
         int k = Integer.parseInt(args[0]);
-        while (!StdIn.isEmpty()) deck.addLast(StdIn.readString());
-        Random r = new Random();
-        System.out.println(r.nextInt(8));
-        System.out.println(r.nextInt(8));
-        System.out.println(r.nextInt(8));
-        System.out.println(r.nextInt(8));
+        while (!StdIn.isEmpty()) rq.enqueue(StdIn.readString());
     }
 }
