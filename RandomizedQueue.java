@@ -164,6 +164,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         public boolean hasNext() { return subsize > 0; }
         
         @Override
+        /**
+         * "Throw a java.lang.UnsupportedOperationException if the client calls
+         * the remove() method in the iterator"
+         */
         public void remove() { 
             throw new java.lang.UnsupportedOperationException();
         }
