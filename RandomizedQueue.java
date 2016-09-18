@@ -81,17 +81,13 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if (isEmpty()) throw new java.util.NoSuchElementException();
         Node<Item> n = first;
         for (int i = 0; i < StdRandom.uniform(size); i++) n = n.next;
-        if (n.previous != null) {
-            n.previous.next = n.next;
-            n.previous = null;
-        }
+        if (n.previous != null) n.previous.next = n.next;
         else first = n.next;
-        if (n.next != null) {
-            n.next.previous = n.previous;
-            n.next = null;
-        }
+        if (n.next != null) n.next.previous = n.previous;
         else last = n.previous;
         size--;
+        n.next = null;
+        n.previous = null;
         return n.item;
     }
    
@@ -126,17 +122,13 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             Node<Item> n = iteratorFirst;
             for (int i = 0; i < StdRandom.uniform(subsize); i++) n = n.next;
             Item item = n.item;
-            if (n.next != null) {
-                n.next.previous = n.next;
-                n.next = null;
-            }
+            if (n.next != null) n.next.previous = n.next;
             else iteratorFirst = n.next;
-            if (n.previous != null) {
-                n.previous.next = n.previous;
-                n.previous = null;
-            }
+            if (n.previous != null) n.previous.next = n.previous;
             else iteratorLast = n.previous;
             subsize--;
+            n.next = null;
+            n.previous = null;
             return item;
         }
     }
