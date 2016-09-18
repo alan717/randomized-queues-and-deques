@@ -43,12 +43,12 @@ import java.util.Iterator;
  * of extra memory per iterator.
  */
 public class RandomizedQueue<Item> implements Iterable<Item> {
-    private Item[] inbox;
+    private Item[] a;
     private int size = 0;
     
     public RandomizedQueue()                 // construct an empty randomized queue
     {
-        inbox = (Item[]) new Object[1];
+        a = (Item[]) new Object[1];
     }
    
     public boolean isEmpty()                 // is the queue empty?
@@ -64,29 +64,26 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public void enqueue(Item item)           // add the item
     {
         if (item == null) throw new java.lang.NullPointerException();
-        if (size == inbox.length) inbox = resize(2 * inbox.length, inbox);
-        inbox[size++] = item;
+        if (size == a.length) resize(2 * a.length);
+        a[size++] = item;
     }
     
-    private Item[] resize(int capacity, Item[] box) {
+    private void resize(int capacity) {
         Item[] copy = (Item[]) new Object[capacity];
-        for (int i = 0; i < size; i++) copy[i] = box[i];
-        return copy;
+        for (int i = 0; i < size; i++) copy[i] = a[i];
+        a = copy;
     }
    
     public Item dequeue()                    // remove and return a random item
     {
         if (isEmpty()) throw new java.util.NoSuchElementException();
-        Node<Item> n = first;
-        for (int i = 0; i < StdRandom.uniform(size); i++) n = n.next;
-        if (n.previous != null) n.previous.next = n.next;
-        else first = n.next;
-        if (n.next != null) n.next.previous = n.previous;
-        else last = n.previous;
-        size--;
-        n.next = null;
-        n.previous = null;
-        return n.item;
+        int index = StdRandom.uniform(size);
+        Item ans = a[index];
+        if (index != size - 1) a[index] = a[size - 1];
+        a[--size] = null;
+        if (size >=0 && size == a.length / 4) resize(a.length / 2);
+        return ans;
+        
     }
    
     public Item sample()                     // return (but do not remove) a random item
