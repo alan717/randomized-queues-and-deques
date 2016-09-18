@@ -44,10 +44,7 @@ import java.util.Iterator;
  */
 public class RandomizedQueue<Item> implements Iterable<Item> {
     private Item[] inbox;
-    private Item[] outbox;
     private int size = 0;
-    private int inSize = 0;
-    private int outSize = 0;
     
     public RandomizedQueue()                 // construct an empty randomized queue
     {
@@ -69,7 +66,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if (item == null) throw new java.lang.NullPointerException();
         if (size == inbox.length) inbox = resize(2 * inbox.length, inbox);
         inbox[size++] = item;
-        inSize++;
     }
     
     private Item[] resize(int capacity, Item[] box) {
@@ -81,9 +77,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public Item dequeue()                    // remove and return a random item
     {
         if (isEmpty()) throw new java.util.NoSuchElementException();
-        if (outSize == 0) {
-            resize
-        }
         Node<Item> n = first;
         for (int i = 0; i < StdRandom.uniform(size); i++) n = n.next;
         if (n.previous != null) n.previous.next = n.next;
