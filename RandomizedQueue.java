@@ -92,6 +92,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return a[StdRandom.uniform(size)];
     }
    
+    @Override
     public Iterator<Item> iterator()         // return an independent iterator over items in random order
     {
        return new RandomizedQueueIterator();
@@ -99,12 +100,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     
     private class RandomizedQueueIterator implements Iterator<Item> {
         private int subsize = size;
-        private Item[] copy;
+        private final Item[] copy;
         
         
         private RandomizedQueueIterator() {
-            copy = (Item[]) new Object[size];
-            for (int i = 0; i < size; i++) copy[i] = a[i];
+            copy = (Item[]) new Object[subsize];
+            for (int i = 0; i < subsize; i++) copy[i] = a[i];
         }
         
         @Override
@@ -120,8 +121,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             if (!hasNext()) throw new java.util.NoSuchElementException();
             int index = StdRandom.uniform(subsize);
             Item ans = copy[index];
-            if (index != size - 1) copy[index] = copy[size - 1];
-            copy[--size] = null;
+            if (index != subsize - 1) copy[index] = copy[subsize - 1];
+            copy[--subsize] = null;
             return ans;
         }
     }
