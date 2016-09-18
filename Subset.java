@@ -20,9 +20,14 @@ import edu.princeton.cs.algs4.StdIn;
 /**
  * Takes a command-line integer k; reads in a sequence of N strings from
  * standard input using StdIn.readString(); and prints out exactly k of them,
- * uniformly at random. Each item from the sequence can be printed out at most
- * once. You may assume that 0 ≤ k ≤ n, where N is the number of string on
+ * uniformly at random.
+ * 
+ * Each item from the sequence can be printed out at most
+ * once.
+ * 
+ * You may assume that 0 ≤ k ≤ n, where N is the number of string on
  * standard input.
+ * 
  * @author Michael <GrubenM@GMail.com>
  */
 public class Subset {
