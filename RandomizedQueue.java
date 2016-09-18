@@ -109,12 +109,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         private int subsize = size;
         
         private RandomizedQueueIterator() {
-            Node o = first;
-            iteratorFirst = new Node(o.item);
-            Node c = iteratorFirst;
+            Node<Item> o = first;
+            iteratorFirst = new Node<>(o.item);
+            Node<Item> c = iteratorFirst;
             while (o.next != null) {
                 o = o.next;
-                c.next = new Node(o.item);
+                c.next = new Node<>(o.item);
                 c.next.previous = c;
                 c = c.next;
             }
