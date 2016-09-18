@@ -43,14 +43,12 @@ import java.util.Iterator;
  * of extra memory per iterator.
  */
 public class RandomizedQueue<Item> implements Iterable<Item> {
-    private Node<Item> first;
-    private Node<Item> last;
+    private Item[] a;
     private int size = 0;
     
     public RandomizedQueue()                 // construct an empty randomized queue
     {
-        first = null;
-        last = null;
+        a = (Item[]) new Object[1];
     }
    
     public boolean isEmpty()                 // is the queue empty?
@@ -143,22 +141,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             return item;
         }
     }
-    
-    /**
-     * The Node is the class from which a linked list is built.
-     * The RandomizedQueue here relies on a linked list implementation.
-     */
-    private class Node<Item> {
-        private Item item;
-        private Node<Item> next;
-        private Node<Item> previous;
-        
-        private Node(Item item) {
-            this.item = item;
-            next = null;
-            previous = null;
-        }
-    }
+
     public static void main(String[] args)   // unit testing
     {
        
