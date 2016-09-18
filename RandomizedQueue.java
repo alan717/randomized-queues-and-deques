@@ -81,7 +81,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         Item ans = a[index];
         if (index != size - 1) a[index] = a[size - 1];
         a[--size] = null;
-        if (size >=0 && size == a.length / 4) resize(a.length / 2);
+        if (size >= 0 && size == a.length / 4) resize(a.length / 2);
         return ans;
     }
    
