@@ -92,7 +92,10 @@ public class Deque<Item> implements Iterable<Item> {
         if (first.next != null) first = first.next;
         first.previous = null;
         size--;
-        if (isEmpty()) last = null;
+        if (isEmpty()) {
+            last = null;
+            first = null;
+        }
         return item;
     }
     
@@ -103,7 +106,10 @@ public class Deque<Item> implements Iterable<Item> {
         if (last.previous != null) last = last.previous;
         last.next = null;
         size--;
-        if (isEmpty()) first = null;
+        if (isEmpty()) {
+            first = null;
+            last = null;
+        }
         return item;
     }
     
@@ -151,17 +157,10 @@ public class Deque<Item> implements Iterable<Item> {
         Deque<String> deck = new Deque<>();
         deck.addFirst("Hey");
         deck.addLast("How");
-        deck.addFirst("Are");
-        deck.addLast("You");
-        System.out.println(deck.removeLast());
+        System.out.println(deck.removeFirst());
         System.out.println(deck.size());
         System.out.println(deck.removeLast());
         System.out.println(deck.size());
-        System.out.println(deck.removeLast());
-        System.out.println(deck.size());
-        System.out.println(deck.removeLast());
-        System.out.println(deck.size());
-        System.out.println(deck.removeLast());
-        System.out.println(deck.size());
+        
     }
 }
