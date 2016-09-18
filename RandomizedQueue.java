@@ -44,11 +44,12 @@ import java.util.Iterator;
  */
 public class RandomizedQueue<Item> implements Iterable<Item> {
     private Item[] a;
-    private int size = 0;
+    private int size;
     
     public RandomizedQueue()                 // construct an empty randomized queue
     {
         a = (Item[]) new Object[1];
+        size = 0;
     }
    
     public boolean isEmpty()                 // is the queue empty?
