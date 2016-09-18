@@ -1,7 +1,5 @@
 
 import edu.princeton.cs.algs4.StdIn;
-import java.util.Random;
-
 /*
  * Copyright (C) 2016 Michael <GrubenM@GMail.com>
  *
