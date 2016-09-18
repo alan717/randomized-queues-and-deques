@@ -128,6 +128,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             throw new java.lang.UnsupportedOperationException();
         }
         
+        @Override
         public Item next() {
             if (!hasNext()) throw new java.util.NoSuchElementException();
             Node<Item> n = iteratorFirst;
