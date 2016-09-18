@@ -1,7 +1,6 @@
 
+import edu.princeton.cs.algs4.StdRandom;
 import java.util.Iterator;
-import java.util.Random;
-
 /*
  * Copyright (C) 2016 Michael <GrubenM@GMail.com>
  *
@@ -47,13 +46,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     private Node<Item> first;
     private Node<Item> last;
     private int size = 0;
-    private Random r;
     
     public RandomizedQueue()                 // construct an empty randomized queue
     {
         first = null;
         last = null;
-        r = new Random();
     }
    
     public boolean isEmpty()                 // is the queue empty?
@@ -83,7 +80,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     {
         if (isEmpty()) throw new java.util.NoSuchElementException();
         Node<Item> n = first;
-        for (int i = 0; i < r.nextInt(size); i++) n = n.next;
+        for (int i = 0; i < StdRandom.uniform(size); i++) n = n.next;
         if (n.previous != null) {
             n.previous.next = n.next;
             n.previous = null;
@@ -102,7 +99,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     {
         if (isEmpty()) throw new java.util.NoSuchElementException();
         Node<Item> n = first;
-        for (int i = 0; i < r.nextInt(size); i++) n = n.next;
+        for (int i = 0; i < StdRandom.uniform(size); i++) n = n.next;
         return n.item;
     }
    
@@ -114,7 +111,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     private class RandomizedQueueIterator implements Iterator<Item> {
         private Node<Item> iteratorFirst = first;
         private Node<Item> iteratorLast = last;
-        private Random c = new Random();
         private int subsize = size;
         
         @Override
@@ -128,7 +124,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         public Item next() {
             if (!hasNext()) throw new java.util.NoSuchElementException();
             Node<Item> n = iteratorFirst;
-            for (int i = 0; i < c.nextInt(subsize); i++) n = n.next;
+            for (int i = 0; i < StdRandom.uniform(subsize); i++) n = n.next;
             Item item = n.item;
             if (n.next != null) {
                 n.next.previous = n.next;
