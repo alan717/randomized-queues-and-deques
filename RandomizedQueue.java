@@ -43,12 +43,15 @@ import java.util.Iterator;
  * of extra memory per iterator.
  */
 public class RandomizedQueue<Item> implements Iterable<Item> {
-    private Item[] a;
+    private Item[] inbox;
+    private Item[] outbox;
     private int size = 0;
+    private int inSize = 0;
+    private int outSize = 0;
     
     public RandomizedQueue()                 // construct an empty randomized queue
     {
-        a = (Item[]) new Object[1];
+        inbox = (Item[]) new Object[1];
     }
    
     public boolean isEmpty()                 // is the queue empty?
@@ -64,19 +67,23 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public void enqueue(Item item)           // add the item
     {
         if (item == null) throw new java.lang.NullPointerException();
-        Node<Item> oldlast = last;
-        last = new Node<>(item);
-        if (isEmpty()) first = last;
-        else {
-            oldlast.next = last;
-            last.previous = oldlast;
-        }
-        size++;
+        if (size == inbox.length) inbox = resize(2 * inbox.length, inbox);
+        inbox[size++] = item;
+        inSize++;
+    }
+    
+    private Item[] resize(int capacity, Item[] box) {
+        Item[] copy = (Item[]) new Object[capacity];
+        for (int i = 0; i < size; i++) copy[i] = box[i];
+        return copy;
     }
    
     public Item dequeue()                    // remove and return a random item
     {
         if (isEmpty()) throw new java.util.NoSuchElementException();
+        if (outSize == 0) {
+            resize
+        }
         Node<Item> n = first;
         for (int i = 0; i < StdRandom.uniform(size); i++) n = n.next;
         if (n.previous != null) n.previous.next = n.next;
