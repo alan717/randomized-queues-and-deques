@@ -39,27 +39,42 @@ import java.util.Iterator;
  * 
  */
 public class Deque<Item> implements Iterable<Item> {
+    // Store Items in a doubly-linked list.
     private Node<Item> first;
     private Node<Item> last;
     private int size = 0;
     
-    public Deque()                           // construct an empty deque
+    /**
+     * "Construct an empty deque"
+     */
+    public Deque()
     {
         first = null;
         last = null;
     }
-   
-    public boolean isEmpty()                 // is the deque empty?
+    
+    /**
+     * "Is the deque empty?"
+     */
+    public boolean isEmpty()
     {
         return (size <= 0);
     }
     
-    public int size()                        // return the number of items on the deque
+    /**
+     * "Return the number of items on the deque"
+     */
+    public int size()
     {
         return size;
     }
     
-    public void addFirst(Item item)          // add the item to the front
+    /**
+     * "Add the item to the front"
+     * "Throw a java.lang.NullPointerException if the client attempts to add a
+     * null item"
+     */
+    public void addFirst(Item item)
     {
         if (item == null) throw new java.lang.NullPointerException();
         Node<Item> oldfirst = first;
@@ -72,7 +87,12 @@ public class Deque<Item> implements Iterable<Item> {
         size++;
     }
     
-    public void addLast(Item item)           // add the item to the end
+    /**
+     * "Add the item to the end"
+     * "Throw a java.lang.NullPointerException if the client attempts to add a
+     * null item"
+     */
+    public void addLast(Item item)
     {
         if (item == null) throw new java.lang.NullPointerException();
         Node<Item> oldlast = last;
@@ -85,7 +105,12 @@ public class Deque<Item> implements Iterable<Item> {
         size++;
     }
     
-    public Item removeFirst()                // remove and return the item from the front
+    /**
+     * "Remove and return the item from the front"
+     * "Throw a java.util.NoSuchElementException if the client attempts to
+     * remove an item from an empty deque"
+     */
+    public Item removeFirst()
     {
         if (isEmpty()) throw new java.util.NoSuchElementException();
         Item item = first.item;
@@ -99,7 +124,12 @@ public class Deque<Item> implements Iterable<Item> {
         return item;
     }
     
-    public Item removeLast()                 // remove and return the item from the end
+    /**
+     * "Remove and return the item from the end"
+     * "Throw a java.util.NoSuchElementException if the client attempts to
+     * remove an item from an empty deque"
+     */
+    public Item removeLast()
     {
         if (isEmpty()) throw new java.util.NoSuchElementException();
         Item item = last.item;
@@ -113,7 +143,11 @@ public class Deque<Item> implements Iterable<Item> {
         return item;
     }
     
-    public Iterator<Item> iterator()         // return an iterator over items in order from front to end
+    /**
+     * "Return an iterator over items in order from front to end"
+     * @return 
+     */
+    public Iterator<Item> iterator()
     {
         return new DequeIterator();
     }
@@ -125,10 +159,18 @@ public class Deque<Item> implements Iterable<Item> {
         public boolean hasNext() { return current != null; }
         
         @Override
+        /**
+         * "Throw a java.lang.UnsupportedOperationException if the client calls
+         * the remove() method in the iterator"
+         */
         public void remove() { 
             throw new java.lang.UnsupportedOperationException();
         }
         
+        /**
+         * "Throw a java.util.NoSuchElementException if the client calls the
+         * next() method in the iterator and there are no more items to return"
+         */
         public Item next() {
             if (!hasNext()) throw new java.util.NoSuchElementException();
             Item item = current.item;
@@ -139,7 +181,7 @@ public class Deque<Item> implements Iterable<Item> {
     
     /**
      * The Node is the class from which a linked list is built.
-     * The deque here relies on a linked list implementation.
+     * The deque here relies on a doubly-linked list implementation.
      */
     private class Node<Item> {
         private Item item;
@@ -152,16 +194,12 @@ public class Deque<Item> implements Iterable<Item> {
             previous = null;
         }
     }
-   
-    public static void main(String[] args)   // unit testing
+    
+    /**
+     * "Unit testing"
+     */
+    public static void main(String[] args)
     {
-        Deque<String> deck = new Deque<>();
-        deck.addFirst("Hey");
-        deck.addLast("How");
-        System.out.println(deck.removeFirst());
-        System.out.println(deck.size());
-        System.out.println(deck.removeLast());
-        System.out.println(deck.size());
         
     }
 }
