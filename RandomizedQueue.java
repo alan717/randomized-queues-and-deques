@@ -122,8 +122,10 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             for (int i = 0; i < c.nextInt(subsize); i++) current = current.next;
             Item item = current.item;
             if (current.next != null) current.next.previous = current.next;
+            else current = current.next;
             if (current.previous != null)
                 current.previous.next = current.previous;
+            else current = current.previous;
             subsize--;
             return item;
         }
