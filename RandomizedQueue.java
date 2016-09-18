@@ -83,7 +83,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         a[--size] = null;
         if (size >=0 && size == a.length / 4) resize(a.length / 2);
         return ans;
-        
     }
    
     public Item sample()                     // return (but do not remove) a random item
@@ -98,19 +97,13 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
     
     private class RandomizedQueueIterator implements Iterator<Item> {
-        private Node<Item> iteratorFirst;
         private int subsize = size;
+        private Item[] copy;
+        
         
         private RandomizedQueueIterator() {
-            Node<Item> o = first;
-            iteratorFirst = new Node<>(o.item);
-            Node<Item> c = iteratorFirst;
-            while (o.next != null) {
-                o = o.next;
-                c.next = new Node<>(o.item);
-                c.next.previous = c;
-                c = c.next;
-            }
+            copy = (Item[]) new Object[size];
+            for (int i = 0; i < size; i++) copy[i] = a[i];
         }
         
         @Override
@@ -124,16 +117,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         @Override
         public Item next() {
             if (!hasNext()) throw new java.util.NoSuchElementException();
-            Node<Item> n = iteratorFirst;
-            for (int i = 0; i < StdRandom.uniform(subsize); i++) n = n.next;
-            Item item = n.item;
-            if (n.previous != null) n.previous.next = n.next;
-            else iteratorFirst = n.next;
-            if (n.next != null) n.next.previous = n.previous;
-            subsize--;
-            n.next = null;
-            n.previous = null;
-            return item;
+            int index = StdRandom.uniform(subsize);
+            Item ans = copy[index];
+            if (index != size - 1) copy[index] = copy[size - 1];
+            copy[--size] = null;
+            return ans;
         }
     }
 
