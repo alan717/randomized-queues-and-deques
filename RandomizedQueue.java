@@ -84,9 +84,15 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if (isEmpty()) throw new java.util.NoSuchElementException();
         Node<Item> n = first;
         for (int i = 0; i < r.nextInt(size); i++) n = n.next;
-        if (n.previous != null) n.previous.next = n.next;
+        if (n.previous != null) {
+            n.previous.next = n.next;
+            n.previous = null;
+        }
         else first = n.next;
-        if (n.next != null) n.next.previous = n.previous;
+        if (n.next != null) {
+            n.next.previous = n.previous;
+            n.next = null;
+        }
         else last = n.previous;
         size--;
         return n.item;
