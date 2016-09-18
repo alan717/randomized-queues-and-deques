@@ -121,9 +121,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             Node<Item> n = iteratorFirst;
             for (int i = 0; i < StdRandom.uniform(subsize); i++) n = n.next;
             Item item = n.item;
-            if (n.next != null) n.next.previous = n.next;
+            if (n.previous != null) n.previous.next = n.next;
             else iteratorFirst = n.next;
-            if (n.previous != null) n.previous.next = n.previous;
+            if (n.next != null) n.next.previous = n.previous;
             subsize--;
             n.next = null;
             n.previous = null;
