@@ -105,8 +105,20 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
     
     private class RandomizedQueueIterator implements Iterator<Item> {
-        private Node<Item> iteratorFirst = first;
+        private Node<Item> iteratorFirst;
         private int subsize = size;
+        
+        private RandomizedQueueIterator() {
+            Node o = first;
+            iteratorFirst = new Node(o.item);
+            Node c = iteratorFirst;
+            while (o.next != null) {
+                o = o.next;
+                c.next = new Node(o.item);
+                c.next.previous = c;
+                c = c.next;
+            }
+        }
         
         @Override
         public boolean hasNext() { return subsize > 0; }
