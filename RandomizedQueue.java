@@ -46,8 +46,8 @@ import java.util.Random;
 public class RandomizedQueue<Item> implements Iterable<Item> {
     private Node<Item> first;
     private Node<Item> last;
-    int size = 0;
-    Random r;
+    private int size = 0;
+    private Random r;
     
     public RandomizedQueue()                 // construct an empty randomized queue
     {
