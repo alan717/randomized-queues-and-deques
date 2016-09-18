@@ -142,9 +142,10 @@ public class Deque<Item> implements Iterable<Item> {
      * The deque here relies on a linked list implementation.
      */
     private class Node<Item> {
-        Item item;
-        Node<Item> next;
-        Node<Item> previous;
+        private Item item;
+        private Node<Item> next;
+        private Node<Item> previous;
+        
         private Node(Item item) {
             this.item = item;
             next = null;
