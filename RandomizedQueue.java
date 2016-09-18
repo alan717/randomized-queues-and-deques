@@ -106,7 +106,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     
     private class RandomizedQueueIterator implements Iterator<Item> {
         private Node<Item> iteratorFirst = first;
-        private Node<Item> iteratorLast = last;
         private int subsize = size;
         
         @Override
@@ -125,7 +124,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             if (n.next != null) n.next.previous = n.next;
             else iteratorFirst = n.next;
             if (n.previous != null) n.previous.next = n.previous;
-            else iteratorLast = n.previous;
             subsize--;
             n.next = null;
             n.previous = null;
