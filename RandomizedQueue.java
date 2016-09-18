@@ -89,9 +89,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public Item sample()                     // return (but do not remove) a random item
     {
         if (isEmpty()) throw new java.util.NoSuchElementException();
-        Node<Item> n = first;
-        for (int i = 0; i < StdRandom.uniform(size); i++) n = n.next;
-        return n.item;
+        return a[StdRandom.uniform(size)];
     }
    
     public Iterator<Item> iterator()         // return an independent iterator over items in random order
